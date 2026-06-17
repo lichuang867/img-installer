@@ -12,8 +12,9 @@ jobs:
   build-release:
     name: "Build and Release"
     runs-on: "ubuntu-22.04"
-    permissions:              # ← 加这两行
-      contents: write         # ←
+    permissions:
+      contents: write
+
     steps:
       - name: "Checking out git repository"
         uses: actions/checkout@v2
@@ -26,7 +27,7 @@ jobs:
       - name: Validate Download URL
         run: |
           USER_INPUT_URL="${{ github.event.inputs.download_url }}"
-          
+
           if [[ ! "$USER_INPUT_URL" =~ ^https?://.+\.[gG][zZ]$|^https?://.+\.[xX][zZ]$|^https?://.+\.[zZ][iI][pP]$ ]]; then
             echo "❌ 错误：地址需以 http(s) 开头且扩展名为 .gz/.xz/.zip"
             echo "当前输入：$USER_INPUT_URL"
