@@ -12,7 +12,8 @@ jobs:
   build-release:
     name: "Build and Release"
     runs-on: "ubuntu-22.04"
-
+    permissions:              # ← 加这两行
+      contents: write         # ←
     steps:
       - name: "Checking out git repository"
         uses: actions/checkout@v2
